@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* ── Backgrounds ─────────────────────────────────── */
+    --bg-base:     11 15 26;       /* #0B0F1A — deep navy */
+    --bg-surface:  17 24 39;       /* #111827 — card surface */
+    --bg-elevated: 17 24 39;       /* same — slightly elevated */
+    --bg-overlay:  31 41 55;       /* #1F2937 — hover / overlay */
+
+    /* ── Borders ─────────────────────────────────────── */
+    --border:      31 41 55;       /* #1F2937 */
+    --border-dim:  24 32 48;       /* dimmer variant */
+
+    /* ── Brand ───────────────────────────────────────── */
+    --primary:       59 130 246;   /* #3B82F6 electric blue */
+    --primary-hover: 37  99 235;   /* #2563EB */
+    --accent:       139 92 246;    /* #8B5CF6 purple */
+    --accent-alt:    99 102 241;   /* #6366F1 indigo */
+
+    /* ── Semantic ────────────────────────────────────── */
+    --danger:   239  68  68;       /* #EF4444 critical */
+    --warning:  245 158  11;       /* #F59E0B medium */
+    --success:   16 185 129;       /* #10B981 low / ok */
+    --info:      56 189 248;       /* #38BDF8 sky */
+
+    /* ── Data Visualization ──────────────────────────── */
+    --chart-blue:   59 130 246;    /* #3B82F6 */
+    --chart-purple: 139 92 246;    /* #8B5CF6 */
+    --chart-cyan:    6 182 212;    /* #06B6D4 */
+    --chart-green:  16 185 129;    /* #10B981 */
+    --chart-yellow: 234 179   8;   /* #EAB308 */
+
+    /* ── Typography ──────────────────────────────────── */
+    --text-primary:   229 231 235; /* #E5E7EB */
+    --text-secondary: 156 163 175; /* #9CA3AF */
+    --text-muted:     107 114 128; /* #6B7280 */
+
+    /* ── Spacing scale ───────────────────────────────── */
+    --space-xs:  0.375rem;  /* 6px */
+    --space-sm:  0.5rem;    /* 8px */
+    --space-md:  1rem;      /* 16px */
+    --space-lg:  1.5rem;    /* 24px */
+    --space-xl:  2rem;      /* 32px */
+    --space-2xl: 3rem;      /* 48px */
+
+    /* ── Radius ──────────────────────────────────────── */
+    --radius-sm:  0.5rem;   /* 8px */
+    --radius-md:  0.75rem;  /* 12px */
+    --radius-lg:  1rem;     /* 16px */
+    --radius-xl:  1.25rem;  /* 20px */
+  }
+}
+
+/* ── Reset ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; padding: 0; margin: 0; }
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: #0B0F1A;
+  color: #E5E7EB;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+/* ── Selection ──────────────────────────────────────── */
+::selection { background: rgba(59,130,246,0.25); color: #E5E7EB; }
+
+/* ── Focus ──────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ── Skeleton shimmer ───────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #111827 25%,
+    #1F2937 50%,
+    #111827 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* ── Pulse glow (for critical markers) ──────────────── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 0.15; transform: scale(1.5); }
+}
+
+/* ── Glow helpers ───────────────────────────────────── */
+.glow-blue   { box-shadow: 0 0 32px rgba(59,130,246,0.2); }
+.glow-purple { box-shadow: 0 0 32px rgba(139,92,246,0.2); }
+.glow-red    { box-shadow: 0 0 32px rgba(239,68,68,0.2); }
+.glow-green  { box-shadow: 0 0 32px rgba(16,185,129,0.2); }
+
+/* ── Gradient text ──────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card ─────────────────────────────────────── */
+.glass {
+  background: rgba(17,24,39,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(31,41,55,0.6);
+}
+
+/* ── Grid micro-pattern ─────────────────────────────── */
+.map-grid {
+  background-image:
+    linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Sidebar mobile overlay ─────────────────────────── */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 30;
+}
+
+/* ── Chart tooltip override ─────────────────────────── */
+.recharts-tooltip-wrapper { outline: none !important; }
+
+/* ── Drag handle ────────────────────────────────────── */
+.drag-handle { cursor: grab; }
+.drag-handle:active { cursor: grabbing; }
+
+/* ── Ambient gradient orb (hero) ────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-12px) scale(1.02); }
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.12;
+  pointer-events: none;
+  animation: float 8s ease-in-out infinite;
+}
